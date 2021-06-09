@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.callor.jdbc.persistatnce.BookDao;
+import com.callor.jdbc.persistance.BookDao;
 import com.callor.jdbc.service.RentService;
 
 import lombok.extern.slf4j.Slf4j;

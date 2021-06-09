@@ -1,4 +1,4 @@
-package com.callor.jdbc.persistatnce.impl;
+package com.callor.jdbc.persistance.impl;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.callor.jdbc.model.BookVO;
-import com.callor.jdbc.persistatnce.BookDao;
+import com.callor.jdbc.persistance.BookDao;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j

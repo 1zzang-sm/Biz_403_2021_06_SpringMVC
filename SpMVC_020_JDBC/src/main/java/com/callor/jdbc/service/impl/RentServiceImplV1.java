@@ -2,8 +2,8 @@ package com.callor.jdbc.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.callor.jdbc.persistatnce.BookDao;
-import com.callor.jdbc.persistatnce.CompDao;
+import com.callor.jdbc.persistance.BookDao;
+import com.callor.jdbc.persistance.CompDao;
 import com.callor.jdbc.service.RentService;
 
 @Service("rentV1")

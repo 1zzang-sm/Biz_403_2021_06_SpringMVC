@@ -1,4 +1,4 @@
-package com.callor.jdbc.persistatnce;
+package com.callor.jdbc.persistance;
 
 import java.util.List;
 

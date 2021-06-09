@@ -1,4 +1,4 @@
-package com.callor.jdbc.persistatnce;
+package com.callor.jdbc.persistance;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import com.callor.jdbc.model.CompVO;
 
 public interface CompDao extends GenericDao<CompVO, String>{
 
+	public String findByMaxCode();
 	// 출판사명으로 조회
 	public List<CompVO> findByCname(String Cname);
 	// 출판사코드으로 조회
