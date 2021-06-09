@@ -12,8 +12,12 @@
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="fileEncoding" value="UTF-8" />
-		<property name="location"
-			value="/WEB-INF/spring/config/mysql.properties" />
+		<property name="location">
+		<list>
+			<value>/WEB-INF/spring/config/mysql.properties</value>
+			<value>/WEB-INF/spring/config/string.properties</value>
+			</list>
+			</property>
 	</bean>
 	<!-- 주석을 작성할때는 꺽쇠, 느낌표 기호 사용금지 *-context.xml file project에서 선언한, 사용할 클래스를 
 		객체로 미리 선언하기 위한 설정을 하는 곳 *bean Spring Container가 클래스를 컴파일하여 객체로 생성한 후 보관하고 
