@@ -8,6 +8,27 @@
 <meta charset="UTF-8">
 <title>나의 홈페이지</title>
 </head>
+<style>
+	* {
+		padding:0;
+		margin:0;
+	}
+	form {
+		width:80%;
+		margin:15px auto;
+	}
+	div{
+		width:80%;
+		margin: 5px auto;
+	}
+	div label {
+		display:inline-block;
+		width:20%;
+	}
+	div input {
+		
+	}
+</style>
 <body>
 	<h1>출판사 정보 등록</h1>
 	<form method="POST">
