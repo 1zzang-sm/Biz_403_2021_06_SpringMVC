@@ -13,7 +13,8 @@
 </style>
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf" %>
-	<h1 class="page_title">도서정보 </h1>
+	<section class="main_sec">
+	
 	<table>
 		<tr>
 			<th>ISBN</th>
@@ -37,6 +38,7 @@
 	<div class="btn_box">
 		<button class="btn_book_insert">도서등록</button>
 	</div>
+	</section>
 	<%@ include file="/WEB-INF/views/include/include_footer.jspf" %>
 </body>
 <script>

@@ -1,6 +1,9 @@
 package com.callor.jdbc.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -22,7 +25,11 @@ public class CompController {
 		this.compService = compService;
 	}
 	@RequestMapping(value= {"/",""}, method=RequestMethod.GET)
-	public String comp() {
+	public String list(HttpSession hSession, Model model) {
+		if(hSession.getAttribute("USERVO") == null) {
+			model.addAttribute("MSG", "LOGIN");
+			return "redirect:/member/login";
+		}
 		return "comp/list";
 	}
 	
