@@ -12,14 +12,13 @@ public class MemberServiceImplV1 implements MemberService{
 	public UserVO login(String username, String password) {
 		// TODO Auto-generated method stub
 		
-		// 로그인처리 
-		// 1. Id와 Pw가 맞는 회원인가
+		// 로그인처리
+		// 1. id와 비밀번호가 맞는 회원인가
 		if(username.equalsIgnoreCase("korea") && password.equals("1234")) {
-			
 			UserVO userVO = new UserVO();
 			userVO.setUsername(username);
 			userVO.setName("홍길동");
-			userVO.setEmail("captain1152@naver.com");
+			userVO.setEmail("callor@callor.com");
 			return userVO;
 		}
 		return null;
@@ -48,5 +47,6 @@ public class MemberServiceImplV1 implements MemberService{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
 
 }

@@ -1,14 +1,18 @@
 package com.callor.jdbc.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.callor.jdbc.model.CompVO;
-import com.callor.jdbc.persistance.CompDao;
+import com.callor.jdbc.pesistance.CompDao;
 import com.callor.jdbc.service.CompService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,42 +28,69 @@ public class CompController {
 		this.compDao = compDao;
 		this.compService = compService;
 	}
-	@RequestMapping(value= {"/",""}, method=RequestMethod.GET)
+	
+	@RequestMapping(value={"/","" }, method=RequestMethod.GET)
 	public String list(HttpSession hSession, Model model) {
+		
 		if(hSession.getAttribute("USERVO") == null) {
-			model.addAttribute("MSG", "LOGIN");
+			model.addAttribute("MSG","LOGIN");
 			return "redirect:/member/login";
 		}
+		
+		List<CompVO> compList = compService.selectAll();
+		log.debug("출판사 정보 가져오기: {} ", compList.toString());
+		model.addAttribute("COMPS",compList);
 		return "comp/list";
+	
+	}
+
+	@RequestMapping(value="/search",method=RequestMethod.GET)
+	public String getList(
+			@RequestParam(name="cp_title",required = false, defaultValue = "")
+			String searchText, Model model) {
+		
+		List<CompVO> compList = null;
+		if(searchText == null || searchText.trim().equals("")) {
+			compList = compService.selectAll();
+		} else {
+			compList = compService.findByTitleAndCeoAndTel(searchText);
+		}
+		model.addAttribute("COMPS",compList);
+		
+		return "comp/search";
 	}
 	
 	// localhost:8080/jdbc/comp/insert로 호출되는 함수
-	@RequestMapping(value="/insert", method=RequestMethod.GET)
+	@RequestMapping(value="/insert",method=RequestMethod.GET)
 	public String insert() {
-		
-		// WEB-INF/views/comp/input.jsp 를 열어라
+		// WEB-INF/views/comp/input.jsp 열어라
 		return "comp/input";
 	}
-	@RequestMapping(value="insert", method=RequestMethod.POST)
+	
+	@RequestMapping(value="/insert",method=RequestMethod.POST)
 	public String insert(CompVO cmVO) {
 		
-		log.debug("Company VO {} ", cmVO.toString());
+		log.debug("Company VO {}",cmVO.toString());
 		compService.insert(cmVO);
 		return "redirect:/";
+	
 	}
 	
-	@RequestMapping(value="/update", method=RequestMethod.GET)
+	
+	@RequestMapping(value="/update",method=RequestMethod.GET)
 	public String update() {
 		
 		return "comp/input";
 	}
-	@RequestMapping(value="/delete", method=RequestMethod.GET)
-	// 매개변수 이름은 web에서 보내는 이름과 같아야한다. (String cpcode)
-	// 굳이 다른 명칭으로 사용하고싶다면 @RequestParam("cpcode") String ****; 이렇게 사용해야함.
-	public String delete(String cpcode) {
-		compDao.delete(cpcode);
+	
+	@RequestMapping(value="/delete",method=RequestMethod.GET)
+	public String delete(@RequestParam("cp_code") String cpCode) {
+		compDao.delete(cpCode);
 		return "redirect:/";
-		
 	}
 	
+	
+	
+	
+
 }

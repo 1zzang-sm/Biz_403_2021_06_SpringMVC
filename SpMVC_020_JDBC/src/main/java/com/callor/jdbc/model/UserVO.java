@@ -8,12 +8,12 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class UserVO {
-	
-	private String username; // pk 20글자
+
+	private String username;
 	private String password;
 	private String name;
 	private String nname;
@@ -22,5 +22,5 @@ public class UserVO {
 	private String addr;
 	
 	private Boolean expire;
-
+	
 }

@@ -3,17 +3,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
 <style>
-	footer {
-		background-color: black;
-		color: white;
-		padding: 5px;
-	}
-	
-	address {
-		text-align: center;
-	}
+footer {
+	background-color: black;
+	color: white;
+	padding: 5px;
+}
+
+address {
+	text-align: center;
+}
 </style>
 
 <footer>
-	<address>CopyRight &copy; captain1152@naver.com</address>
+	<address>CopyRight &copy; callor@callor.com</address>
 </footer>
+
+<div id="modal">
+	<span>X</span>
+</div>
