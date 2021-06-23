@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
@@ -34,8 +34,8 @@
 							<td>${ST.index}</td>
 							<td>${BOOK.bk_isbn}</td>
 							<td>${BOOK.bk_title}</td>
-							<td>${BOOK.bk_ccode}</td>
-							<td>${BOOK.bk_acode}</td>
+							<td><span><label class="truncate">${BOOK.bk_ccode}</label></span></td>
+							<td><span><label class="truncate">${BOOK.bk_acode}</label></span></td>
 							<td>${BOOK.bk_date}</td>
 							<td>${BOOK.bk_price}</td>
 							<td>${BOOK.bk_pages}</td>
