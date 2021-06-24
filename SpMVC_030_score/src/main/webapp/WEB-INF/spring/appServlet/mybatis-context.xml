@@ -26,7 +26,7 @@
 		
 	</bean>
 	<!-- interface를 지정함 -->	
-	<mybatis-spring:scan base-package="com.callor.score.dao"/>
+	<mybatis-spring:scan base-package="com.callor.score.dao.ext"/>
 	
 	<!-- sessionTemplate sql명령문을 받아서 다시 java로 보내는애 factorybean의 도움을받음 -->
 	<bean class="org.mybatis.spring.SqlSessionTemplate" >
