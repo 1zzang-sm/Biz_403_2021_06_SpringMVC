@@ -31,5 +31,7 @@ public class ScoreController {
 		model.addAttribute("BODY", "SCORE_VIEW");
 		return "home";
 	}
+	
+	
 
 }

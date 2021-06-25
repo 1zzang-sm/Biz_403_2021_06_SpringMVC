@@ -103,6 +103,40 @@
 		box-shadow: 2px 2px 2px 2px black;
 		cursor: pointer; 
 	}
+	button.save {
+		background-color: blue;
+		color: white;
+	}
+	button.reset {
+		background-color: olive;
+		color: white
+	}
+	button.list {
+		background-color: green;
+		color: white;
+	}
+	button.home {
+		background-color: black;
+		color: white;
+		text-shadow: 1px 1px 1px black;
+	}
+	button.insert {
+		background-color: rgba(0,0,150,1);
+		color: white;
+	}
+	button.student.list {
+		background-color: orange;
+		color: white;
+		text-shadow: 1px 1px 1px black;
+	}
+	button.update {
+		background-color: green;
+		color: white;
+	}
+	button.delete {
+		background-color: red;
+		color: yellow;
+	}
 	form {
 		width:90%;
 		margin: 0 auto 10px auto;
@@ -134,18 +168,6 @@
 	form input:hover {
 		background-color: #eee;
 	}
-	form button.save {
-		background-color: blue;
-		color: white;
-	}
-	form button.reset {
-		background-color: olive;
-		color: white
-	}
-	form button.list {
-		background-color: green;
-		color: white;
-	}
 	
 	
 </style>
@@ -166,6 +188,9 @@
 			<c:when test="${BODY == 'STUDENT_INPUT'}">
 				<%@ include file="/WEB-INF/views/student/input.jsp" %>
 			</c:when>
+			<c:when test="${BODY == 'STUDENT_DETAIL'}">
+				<%@ include file="/WEB-INF/views/student/detail.jsp" %>
+			</c:when>
 			<c:otherwise>
 				<%@ include file="/WEB-INF/views/student/list.jsp"%>
 			</c:otherwise>
@@ -185,7 +210,7 @@
  */
 let stinfo_list = document.querySelector("button.student.list");
 let stinfo_insert = document.querySelector("button.student.insert");
-
+let score_insert = document.querySelector("button.score.insert")
 let home = document.querySelector("button.student.home");
 
 
@@ -207,9 +232,35 @@ if(home){
 		location.href = "${rootPath}/";
 	});
 }
+if(score_insert) {
+	score_insert.addEventListener("click", (e)=>{
+		location.href = "${rootPath}/student/detail"
+	})
+}
 
+
+let table = document.querySelector("table.detail")
+if(table != null ){
+	table.addEventListener("click", (e)=>{
+
+		let target = e.target
+		let tagName = target.tagName
+		
+		if(tagName === "TD") {
+			let tr = target.closest("TR")
+			let stNum = tr.dataset.stnum
+			location.href = "${rootPath}/student/detail?st_num=" + stNum
+			
+		}
+	})
 	
-	
-	
+}
+
+
+
+
+
+
+
 </script>
 </html>
