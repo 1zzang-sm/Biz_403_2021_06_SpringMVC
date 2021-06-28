@@ -59,7 +59,7 @@ table.student_detail td {
 		</c:forEach>
 		<div class="btn_box">
 			<button class="save" type="submit">저장</button>
-			<button class="list" type="button">리스트로</button>
+			<button class="student list" type="button">리스트로</button>
 			<button class="student home" type="button">처음으로</button>
 		</div>
 	</fieldset>
