@@ -22,7 +22,7 @@ import org.json.simple.parser.ParseException;
  * 그래서 인터페이스에 Generic을 선언하여 
  * VO별로 필요에 따라 클래스를 만들 수 있도록 한다.
  */
-public interface NaverService<T> {
+public interface NaverGenericService<BookDTO> {
 	
 	// 검색문자열을 받아서 검색을 위한 URL을 생성하여 return
 	public String queryURL(String search);
@@ -32,6 +32,6 @@ public interface NaverService<T> {
 	
 	// JSON 형태의 문자열을 받아서 VO를 담은 List type으로 return
 	// JSON 문자열을 parsing하여 객체(리스트) type으로 변환
-	public List<T> getNaverList(String jsonString) throws ParseException;
+	public List<BookDTO> getNaverList(String jsonString) throws ParseException;
 
 }

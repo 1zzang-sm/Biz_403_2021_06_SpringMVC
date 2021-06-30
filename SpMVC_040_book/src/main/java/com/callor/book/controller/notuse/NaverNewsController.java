@@ -1,6 +1,4 @@
-package com.callor.book.controller;
-
-
+package com.callor.book.controller.notuse;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -22,37 +20,18 @@ import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @Slf4j
-@Controller
-public class HomeController {
-	
-	
-	
-	@Qualifier("naverBookServiceV2")
+//@Controller
+//@RequestMapping(value="/news")
+public class NaverNewsController {
+
+	@Qualifier("naverServiceV1")
 	protected final NaverBookService nBookService;
 	
-	@RequestMapping(value="/",method=RequestMethod.GET)
-	public String home() {
+	@RequestMapping(value= {"/",""},method=RequestMethod.GET)
+	public String home(@RequestParam(name="search", required = false, defaultValue = "")String search,Model model) throws MalformedURLException, IOException, ParseException {
 		
-		return "redirect:/naver/BOOK";
-	}
-	
-	@RequestMapping(value="/not", method=RequestMethod.GET)
-	public String home(@RequestParam(name="category", required = false, defaultValue = "") String category, Model model) {
-		// model.addAttribute("CAT", category);
-		if(category.equalsIgnoreCase("BOOK")) {
-			return "redirect:/book";
-		}else if(category.equalsIgnoreCase("MOVIE")) {
-			return "redirect:/movie";
-		}else if(category.equalsIgnoreCase("NEWS")) {
-			return "redirect:/news";
-		}
-		return "redirect:/book";
-	}
-	
-	
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home1(@RequestParam(name="search", required = false, defaultValue = "")String search, Model model) throws MalformedURLException, IOException, ParseException {
-		
+	//	model.addAttribute("pHolder", "뉴스 검색어");
+		model.addAttribute("CAT", "NEWS");
 		if(search != null && !search.equals("")) {
 			String queryURL = nBookService.queryURL(search.trim());
 			String jsonString = nBookService.getJsonString(queryURL);
@@ -61,8 +40,7 @@ public class HomeController {
 			
 			model.addAttribute("BOOKS", bookList);
 		}
-		
 		return "home";
 	}
-	
+
 }
