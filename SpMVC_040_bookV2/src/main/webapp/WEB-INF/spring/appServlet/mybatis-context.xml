@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+<!-- 단계별로 차례로 주입중  -->
+	<!-- dataSource -->
+	<bean id="ds" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/myLibs"/>
+		<!-- oracle : jdbc:oracle:thin:@localhost:1501:xe -->
+		<property name="username" value="root"/>
+		<property name="password" value="!Biz12341234"/>
+	</bean>
+	
+	<!-- sessionFactory factorybean이 주로 사용하는 재료 mapper, aliases, spring:scan ... -->
+	<!-- 
+		property의 값 지정하기
+		value : 값이 문자열형 일때, String 
+		ref : 값이 객체일때 
+	 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="ds" />
+		<!-- wild card 기능 *-mapper.xml -->
+		<property name="mapperLocations" value="/WEB-INF/spring/mybatis-mapper/*-mapper.xml" />
+		<!-- type이란 VO클래스를 담긴 패키지를 지정해라 -->
+		<property name="typeAliasesPackage" value="com.callor.score.model"/>
+		
+	</bean>
+	<!-- interface를 지정함 -->	
+	<mybatis-spring:scan base-package="com.callor.book.dao.ext"/>
+	
+	<!-- sessionTemplate sql명령문을 받아서 다시 java로 보내는애 factorybean의 도움을받음 -->
+	<bean class="org.mybatis.spring.SqlSessionTemplate" >
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	<!-- 
+	spring.jdbc에서 transaction 설정하기
+	DataSourceTransactionManager를 bean으로 선언하기
+	이때 id는 transactionManager로 설정하기
+	dataSource 속성에 위에서 선언한 dataSource를 ref로 지정하기
+	tx:annotation-driven
+		 -->
+	<tx:annotation-driven/>
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds" />
+	</bean>
+	
+</beans>
