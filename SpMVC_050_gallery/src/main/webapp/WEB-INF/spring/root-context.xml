@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!--
+		단위
+		0 : 개...
+		000 : K(Killo) 개
+		000,000 : M(Mega) 개
+		000,000,000 : G(Giga) 개
+		000,000,000,000 : T(Tera) 개
+	  -->
+		
+	<!-- file upload와 관련한 bean을 설정하기  -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSizePerFile" value="3500000"/> <!-- 파일 1개당 최대업로드 가능한 사이즈 -->
+		<property name="maxUploadSize" value="35000000" /> <!-- 전체파일의 업로드 크기 -->
+		
+		
+	</bean>
+	
+</beans>
