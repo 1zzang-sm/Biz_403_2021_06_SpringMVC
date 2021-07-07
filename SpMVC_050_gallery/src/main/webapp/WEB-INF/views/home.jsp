@@ -8,6 +8,24 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+	h1 {
+		text-align:0;
+		padding:12px 16px;
+		background-color:#89CEEB;
+		color:white;
+		text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+		text-align: center;
+	}
+	a {
+		font-size:30px;
+		background-color:black;
+		color:white;
+		text-decoration:none;
+		
+	}
+	
+</style>
 <body>
 <h1> 내 갤러리</h1>
 <c:choose>
@@ -17,6 +35,10 @@
 	<c:when test="${BODY eq 'GA-LIST'}">
 		<%@ include file="/WEB-INF/views/gallery/list.jsp" %>
 		<a href="${rootPath}/gallery/input">이미지 등록</a>
+	</c:when>
+	<c:when test="${BODY eq 'GA-DETAIL'}">
+		<%@ include file="/WEB-INF/views/gallery/detail.jsp" %>
+		<a href="${rootPath}/gallery">리스트로</a>
 	</c:when>
 	<c:otherwise>
 		<a href="${rootPath}/gallery/input">이미지 등록</a>

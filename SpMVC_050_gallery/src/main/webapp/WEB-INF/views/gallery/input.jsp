@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>내 갤러리</h1>
+
 	<form method="POST" enctype="multipart/form-data">
 		<div>
 			<label>작성자</label><input name="g_writer" value="${CMD.g_writer}">
