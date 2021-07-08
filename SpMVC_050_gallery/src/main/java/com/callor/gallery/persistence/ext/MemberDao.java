@@ -1,0 +1,10 @@
+package com.callor.gallery.persistence.ext;
+
+import com.callor.gallery.model.MemberVO;
+import com.callor.gallery.persistence.GenericDao;
+
+public interface MemberDao extends GenericDao<MemberVO, String>{
+	
+	public int insertOrUpdate(MemberVO memberVO);
+
+}

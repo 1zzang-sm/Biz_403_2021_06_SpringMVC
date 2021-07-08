@@ -31,7 +31,7 @@
 				${GALLERY.g_subject}
 			</a>
 		</h3>
-		<p>${GALLERY.g_content}</p>
+		<p>${GALLERY.g_content}</p> 
 	</div>
 
 </div>
