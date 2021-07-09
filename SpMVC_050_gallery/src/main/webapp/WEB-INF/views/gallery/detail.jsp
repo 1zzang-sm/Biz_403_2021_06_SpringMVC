@@ -12,25 +12,7 @@
 	<p>내용 : ${GFLIST[0].g_content}</p>
 </div>
 <style>
-	* {
-		margin:0;
-		padding:0;
-	}
 	
-	div#gallery_info {
-		padding: 10px;
-		text-align:center;
-		border-bottom: 1px solid black;
-		background-color:#89CEEB;
-		color: white;
-	}
-	div#gallery_files {
-		display:flex;
-		flex-wrap: wrap;
-	}
-	div#gallery_files img {
-		margin:2px;
-	}
 </style>
 <div id="gallery_files">
 	<c:forEach items="${GFLIST}" var="FILE">

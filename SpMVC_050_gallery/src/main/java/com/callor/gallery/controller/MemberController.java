@@ -4,8 +4,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.callor.gallery.model.MemberVO;
@@ -50,8 +52,18 @@ public class MemberController {
 		}
 	}
 
+	// 메뉴에서 로그인을 클릭했을때 
+	@RequestMapping(value = "login/{url}")
+	public String login(@PathVariable("url") String url) {
+		return "redirect:/member/login?url=login";
+	}
+
+	// 다른 곳에서 redirect 했을때
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(Model model) {
+	public String login(@RequestParam(name = "url", required = false, defaultValue = "NONE") String url, Model model) {
+		i  f (url.equals("NONE")) {
+			model.addAttribute("LOGIN_FAIL", "LOGIN_REQ");
+		}
 		model.addAttribute("BODY", "LOGIN");
 		return "home";
 	}
@@ -63,7 +75,7 @@ public class MemberController {
 		if (memberVO == null) {
 			model.addAttribute("BODY", "LOGIN");
 			return "home";
-		}else {
+		} else {
 			// 사용자 ID 정상, 비밀번호 확인 정상 
 			// HttpSession에 사용자 정보가 담긴 memberVO를 
 			// 속성으로 세팅한다
@@ -84,7 +96,8 @@ public class MemberController {
 			return "redirect:/";
 		}
 	}
-	@RequestMapping(value="/logout", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.removeAttribute("MEMBER");
 		return "redirect:/";

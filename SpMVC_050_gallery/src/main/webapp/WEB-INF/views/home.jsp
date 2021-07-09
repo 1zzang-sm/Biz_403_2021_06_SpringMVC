@@ -9,25 +9,23 @@
 <title>Insert title here</title>
 </head>
 <style>
-	h1 {
-		text-align:0;
-		padding:12px 16px;
-		background-color:#89CEEB;
-		color:white;
-		text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+	* {
+		padding: 0;
+		margin: 0;
+	}
+	div#title {
+		color: white;
 		text-align: center;
+		font-size: 30px;
+		background-color: black;
+		width:100%;
+		height:20%;
 	}
-	a {
-		font-size:30px;
-		background-color:black;
-		color:white;
-		text-decoration:none;
-		
-	}
-	
 </style>
 <body>
-<h1> 내 갤러리</h1>
+<div id="title">
+<h1>GALLERY</h1>
+</div>
 <%@ include file="/WEB-INF/views/include/include_nav.jspf" %>
 <c:choose>
 	<c:when test="${BODY eq 'GA-INPUT'}" >
@@ -39,6 +37,10 @@
 	</c:when>
 	<c:when test="${BODY eq 'GA-DETAIL'}">
 		<%@ include file="/WEB-INF/views/gallery/detail.jsp" %>
+		<a href="${rootPath}/gallery">리스트로</a>
+	</c:when>
+	<c:when test="${BODY eq 'GA-DETAIL-V2'}">
+		<%@ include file="/WEB-INF/views/gallery/detail2.jsp" %>
 		<a href="${rootPath}/gallery">리스트로</a>
 	</c:when>
 	<c:when test="${BODY eq 'JOIN'}">
@@ -68,7 +70,7 @@ if(main_nav) {
 			if(menu.id === "join"){
 				location.href="${rootPath}/member/join"
 			}else if(menu.id === "login"){
-				location.href="${rootPath}/member/login"
+				location.href="${rootPath}/member/login/nav"
 			}else if(menu.id === "logout"){
 				location.href="${rootPath}/member/logout"
 			}else if(menu.id === "image_create"){

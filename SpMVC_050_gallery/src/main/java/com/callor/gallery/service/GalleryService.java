@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.callor.gallery.model.GalleryDTO;
 import com.callor.gallery.model.GalleryFilesDTO;
 
+
 public interface GalleryService {
 	
 	public int insert(GalleryDTO galleryDTO) throws Exception;
@@ -18,4 +19,7 @@ public interface GalleryService {
 
 	public List<GalleryFilesDTO> findByIdGalleryFiles(Long g_seq) ;
 
+	public GalleryDTO findByIdGallery(Long g_seq);
+
+	public int delete(Long g_seq);
 }

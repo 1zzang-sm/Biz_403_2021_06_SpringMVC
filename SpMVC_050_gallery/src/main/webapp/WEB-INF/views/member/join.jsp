@@ -3,10 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
 <style>
-	div.msg {
-		font-size: 10px;
-		color: red;
-	}
+
 </style>
 <form method="POST">
 	<div>

@@ -3,25 +3,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
 <style>
-	div.msg.view {
-		color:yellow;
-		background-color:red;
-		font-size:20px;
-		padding: 2rem;
-	}
+
+	
 </style>
 <form  method="POST" id="login_form">
 	<div class="msg login error">
 	</div>
-	<div>
+	<div id="id">
 		<label>사용자 ID</label>
 		<input name="m_userid" type="email" />
 	</div>
-	<div>
+	<div id="pw">
 		<label>비밀번호</label>
 		<input name="m_password" type="password"/>
 	</div>
-	<div>
+	<div id="btn">
 		<button type="button" class="login">로그인</button>
 		<button type="button" class="join">회원가입</button>
 	</div>
@@ -80,6 +76,10 @@ let input_password = document.querySelector("input[name='m_password']")
 	//	msg_error.style.backgroundColor = "red"
 	//	msg_error.style.padding = "2rem"
 		
+	} else if(login_fail === "LOGIN_REQ"){
+		msg_error.innerHTML= "로그인이 필요한 서비스 입니다.<br/>"
+		msg_error.innerHTML+= "로그인을 해 주세요."
+		msg_error.classList.add("view")
 	}
 
 
