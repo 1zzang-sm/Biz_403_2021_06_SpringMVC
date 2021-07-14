@@ -61,7 +61,7 @@ public class MemberController {
 	// 다른 곳에서 redirect 했을때
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(@RequestParam(name = "url", required = false, defaultValue = "NONE") String url, Model model) {
-		i  f (url.equals("NONE")) {
+		if (url.equals("NONE")) {
 			model.addAttribute("LOGIN_FAIL", "LOGIN_REQ");
 		}
 		model.addAttribute("BODY", "LOGIN");
