@@ -19,7 +19,8 @@
 		flex:3;
 	}
 </style>
-
+<%@ include file="/WEB-INF/views/include/include_gallery_search.jspf" %>
+<section id="image_list_section">
 <c:forEach
 	items="${GALLERYS}"
 	var="GALLERY">
@@ -44,4 +45,5 @@
 	</div>
 
 </c:forEach>
+</section>
 <%@ include file="/WEB-INF/views/include/include_page_nav.jspf" %>

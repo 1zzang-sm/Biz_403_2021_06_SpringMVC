@@ -4,7 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.callor.gallery.persistence.ext.GalleryDao">
-
+	<select id="countAll" resultType="Integer">
+		SELECT COUNT(*) FROM tbl_gallery
+	</select>
+	
 	<select id="selectAll" resultType="GalleryDTO">
 		SELECT * FROM tbl_gallery
 		ORDER BY g_date DESC, g_time DESC
@@ -13,11 +16,26 @@
 		SELECT * FROM tbl_gallery
 		WHERE g_seq = #{g_seq}
 	</select>
+	<!-- 매개변수로 칼럼명과 검색어를 전달받아서 조건검색을 수행 -->
+	<!-- 전달받은 매개변수에 따라서 값이 아닌 SQL이 바뀌는 코드 : 동적SQL -->
+	<select id="findBySearch" resultType="GalleryDTO">
+		SELECT * FROM tbl_gallery
+		<if test="text != null and text != 'NONE'">
+			<if test="column == 'g_subject'">
+				WHERE g_subject LIKE CONCAT('%', #{text}, '%')
+			</if>
+			<if test="column == 'g_writer'">
+				WHERE g_writer LIKE CONCAT('%', #{text}, '%')
+			</if>
+			<if test="column == 'g_content'">
+				WHERE g_content LIKE CONCAT('%', #{text}, '%')
+			</if>
+		</if>
+	</select>
 
 	<!-- 
 	select된 결과를 DTO와 매칭하는 중간단계 RowMapper
-	id : table select 했을때 PK지정된 값을
-		property : DTO변수이름, column : SELECT 된 칼럼이름, AS 된 칼럼이름
+ 		property : DTO변수이름, column : SELECT 된 칼럼이름, AS 된 칼럼이름
 	result : PK가 아닌 칼럼들
 		property : DTO변수이름, column : SELECT 된 칼럼이름, AS 된 칼럼이름
 	-->

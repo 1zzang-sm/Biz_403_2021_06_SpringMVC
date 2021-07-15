@@ -12,6 +12,7 @@
  <logger name="com.callor.gallery"><level value="INFO"  additivity="false"/></logger>
  <logger name="com.callor.gallery.controller"><level value="DEBUG"  additivity="false"/></logger>
  <logger name="com.callor.gallery.service"><level value="DEBUG"  additivity="false"/></logger>
+ <logger name="com.callor.gallery.persistence"><level value="DEBUG"  additivity="false"/></logger>
 
 
 	<root level="INFO">
